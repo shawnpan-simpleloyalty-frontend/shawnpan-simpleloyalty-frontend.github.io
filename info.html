@@ -99,14 +99,11 @@
 
       alert("Registration successful!");
 
-      document.getElementById("name").value = "";
-      document.getElementById("day").value = "";
-      document.getElementById("month").value = "";
-      document.getElementById("year").value = "";
-      document.getElementById("email").value = "";
-      document.getElementById("noEmail").checked = false;
-
-      cookie
+      createCookie("name", formData.name, 1);
+      createCookie("birthday", formData.birthday, 1);
+      if (!noEmail) {
+        createCookie("email", formData.email, 1);
+      }
     }
 
     const continueButton = document.querySelector(".check-button");
