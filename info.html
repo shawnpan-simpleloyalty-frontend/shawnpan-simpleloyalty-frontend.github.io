@@ -63,6 +63,10 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script>
+    if (readCookie.get("phone") == null) {
+      document.location.href = "/";
+      return;
+    }
     function handleFormSubmit(event) {
       event.preventDefault();
 
@@ -115,7 +119,7 @@
       createCookie("name", formData.name, 1);
       createCookie("birthday", formData.birthday, 1);
 
-      alert("Registration successful!");
+      document.location.href = "/profile.html"
     }
 
     const continueButton = document.querySelector(".check-button");
