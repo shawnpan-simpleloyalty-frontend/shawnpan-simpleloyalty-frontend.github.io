@@ -16,17 +16,22 @@
       min-height: 100vh;
       background-color: #ffffff;
       color: #333333;
+      grid-template-rows: auto 1fr auto;
     }
 
     .container {
+      position: absolute;
+      top: 10%;
       text-align: center;
+      justify-content: center;
       max-width: 400px;
       width: 100%;
       padding: 20px;
     }
 
     .logo {
-      font-size: 94px;
+      vertical-align: middle;
+      font-size: 52px;
       font-weight: bold;
       color: #FF6600;
       margin-bottom: 20px;
@@ -93,14 +98,45 @@
       text-decoration: none;
     }
 
-    footer {
-      border-color: gray;
-      border-radius: 5px;
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+      border: 1px solid gray;
+      background-color: lightgray;
     }
   </style>
 </head>
 
 <body>
+  <script>
+    function createCookie(name, value, days) {
+      if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        var expires = "; expires=" + date.toGMTString();
+      }
+      else var expires = "";
+      document.cookie = name + "=" + value + expires + "; path=/";
+    }
+
+    function readCookie(name) {
+      var nameEQ = name + "=";
+      var ca = document.cookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+      }
+      return null;
+    }
+
+    function eraseCookie(name) {
+      createCookie(name, "", -1);
+    }
+  </script>
   <div class="container">
     <div class="logo">MULAH</div>
     <div class="welcome-text">Hello, Welcome!</div>
@@ -114,9 +150,9 @@
       <input type="text" placeholder="Enter your mobile number" />
     </div>
     <button class="check-button">Check Loyalty Points</button>
-    <footer>
-      <div class="powered-by">Powered by <a href="https://www.MulahRewards.com">MulahRewards.com</a></div>
-    </footer>
+  </div>
+  <div class="footer">
+    <h6 class="powered-by">Powered by <a href="https://www.MulahRewards.com">MulahRewards.com</a></h6>
   </div>
 </body>
 
