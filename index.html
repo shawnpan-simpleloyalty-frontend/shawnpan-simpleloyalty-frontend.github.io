@@ -41,18 +41,37 @@
     <div class="welcome-text">Hello, Welcome!</div>
     <div class="subtext">Check Your Loyalty Points & Rewards</div>
     <div class="input-container">
-      <select>
-        <option value="+60">+60</option>
+      <select class="country-code-select">
+        <option value="+60" selected="selected">+60</option>
         <option value="+65">+65</option>
         <option value="+1">+1</option>
       </select>
-      <input type="text" placeholder="Enter your mobile number" />
+      <input id="phone-number-input" type="text" placeholder="Enter your mobile number" />
     </div>
-    <button class="check-button" onclick="">Check Loyalty Points</button>
+    <button class="check-button" onclick="phoneNumberOnclick()">Check Loyalty Points</button>
   </div>
   <div class="footer">
     <h6 class="powered-by">Powered by <a href="https://www.MulahRewards.com">MulahRewards.com</a></h6>
   </div>
+  <script>
+    function phoneNumberOnclick() {
+      const phoneNumber = document.getElementById("phone-number-input").value;
+      const countryCode = "+60"
+
+      if (isNaN(phoneNumber)) {
+        alert("The phone number you enter must contain only digits.")
+        return;
+      }
+      const fullNumber = countryCode + phoneNumber;
+
+      if (fullNumber !== "+60173527250") {
+        alert("Unknown number entered. Please enter a registered number.")
+        return;
+      }
+
+      createCookie("phone", fullNumber, 1);
+    }
+  </script>
 </body>
 
 </html>
