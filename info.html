@@ -97,13 +97,25 @@
 
       console.log(formData);
 
-      alert("Registration successful!");
+      const validateEmail = (email) => {
+        return String(email)
+          .toLowerCase()
+          .match(
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          );
+      };
 
-      createCookie("name", formData.name, 1);
-      createCookie("birthday", formData.birthday, 1);
       if (!noEmail) {
+        if (!validateEmail(formData.email)) {
+          alert("Invalid email address entered. Please enter a valid email address.")
+          return
+        }
         createCookie("email", formData.email, 1);
       }
+      createCookie("name", formData.name, 1);
+      createCookie("birthday", formData.birthday, 1);
+
+      alert("Registration successful!");
     }
 
     const continueButton = document.querySelector(".check-button");

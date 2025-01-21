@@ -112,3 +112,20 @@ margin-bottom: 20px;
 background-color: #f4623a; /* Orange button color */
 border-color: #f4623a;
 }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+th {
+  background-color: #FF6600;
+}
