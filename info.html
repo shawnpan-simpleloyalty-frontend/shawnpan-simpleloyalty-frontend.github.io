@@ -7,6 +7,7 @@
   <title>Mulah Registration</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script type="text/javascript" src="cookies.js"></script>
 </head>
 
 <body>
@@ -52,15 +53,65 @@
 
           <button type="submit" class="check-button btn-block">Continue</button>
         </form>
-
-        <p class="text-center mt-3">Powered by MulahRewards.com</p>
       </div>
     </div>
   </div>
-
+  <div class="footer">
+    <h6 class="powered-by">Powered by <a href="https://www.MulahRewards.com">MulahRewards.com</a></h6>
+  </div>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    function handleFormSubmit(event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const day = document.getElementById("day").value;
+      const month = document.getElementById("month").value;
+      const year = document.getElementById("year").value;
+      const email = document.getElementById("email").value;
+      const noEmail = document.getElementById("noEmail").checked;
+
+      if (name === "") {
+        alert("Please enter your name.");
+        return;
+      }
+
+      if (day === "" || month === "" || year === "") {
+        alert("Please enter your birthday.");
+        return;
+      }
+
+      if (email === "" && !noEmail) {
+        alert("Please enter your email address.");
+        return;
+      }
+
+      const formData = {
+        name: name,
+        birthday: `${month}/${day}/${year}`,
+        email: email,
+        noEmail: noEmail,
+      };
+
+      console.log(formData);
+
+      alert("Registration successful!");
+
+      document.getElementById("name").value = "";
+      document.getElementById("day").value = "";
+      document.getElementById("month").value = "";
+      document.getElementById("year").value = "";
+      document.getElementById("email").value = "";
+      document.getElementById("noEmail").checked = false;
+
+      cookie
+    }
+
+    const continueButton = document.querySelector(".check-button");
+    continueButton.addEventListener("click", handleFormSubmit);
+  </script>
 </body>
 
 </html>
